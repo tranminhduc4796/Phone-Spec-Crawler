@@ -30,6 +30,8 @@ def parse_resolution(value):
 class Device(scrapy.Item):
     # define the fields for your item here:
     name = scrapy.Field(output_processor=TakeFirst())
+    confidence = scrapy.Field(output_processor=TakeFirst())
+    device_name = scrapy.Field(output_processor=TakeFirst())
     resolution = scrapy.Field(input_processor=MapCompose(remove_tags, parse_resolution),
                               output_processor=TakeFirst())
     size = scrapy.Field(input_processor=MapCompose(remove_tags, parse_size),

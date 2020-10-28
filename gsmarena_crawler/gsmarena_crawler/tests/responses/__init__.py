@@ -6,6 +6,10 @@ from scrapy.http import HtmlResponse, Request
 def fake_response_from_file(file_name, url=None, meta=None):
     if not url:
         url = 'http://www.example.com'
+    else:
+        request = Request(url=url, meta=meta)
+        response = HtmlResponse(url=url, request=request, encoding='utf-8')
+        return response
 
     request = Request(url=url, meta=meta)
     if not file_name[0] == '/':
